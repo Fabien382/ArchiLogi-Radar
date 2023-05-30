@@ -1,0 +1,9 @@
+{
+    "name": "B612",
+    "localisation": "Lyon 7e",
+    "reports": [
+      { "licensePlate": "BH-686-AM", "speed": "120km/h", "date": "2023-01-01", "evidenceUrl": "https://image.com" },
+      { "licensePlate": "BH-686-AM", "speed": "120km/h", "date": "2023-01-02", "evidenceUrl": "https://image.com" },
+      { "licensePlate": "BH-686-AM", "speed": "120km/h", "date": "2023-04-01", "evidenceUrl": "https://image.com" }
+    ]
+  }

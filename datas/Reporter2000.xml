@@ -1,0 +1,7 @@
+<localisation loc="Lyon 7e">
+  <date day="2023-01-01">
+    <driver license="BH-686-AM" type="motocycle" brand="Suzuki" speed="120" />
+    <driver license="BM-767-EM" type="motocycle" brand="Suzuki" speed="150" />
+    <driver license="BM-767-EM" type="motocycle" brand="Suzuki" speed="260" />
+  </date>
+</localisation>
