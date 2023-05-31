@@ -1,4 +1,4 @@
-require('node-fecth');
+require('node-fetch');
 export class JsonAwesomeRadar implements dataInterfaces {
   getData(): Radar[] {
     fetch('../datas/AwesomeRadar.json')
