@@ -1,4 +1,4 @@
-class FlashRadar {
+export class FlashRadar {
   private license: string | null;
   private type: string | null;
   private brand: string | null;
