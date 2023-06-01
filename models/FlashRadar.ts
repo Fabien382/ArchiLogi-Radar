@@ -21,4 +21,8 @@ export class FlashRadar {
     this.date = date;
     this.imageUrl = imageUrl;
   }
+
+  public getDate(): Date | null {
+    return this.date;
+  }
 }

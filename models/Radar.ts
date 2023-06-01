@@ -17,4 +17,8 @@ export class Radar {
     this.flash = flash;
     this.speedThreshold = speedThreshold;
   }
+
+  public getFlash(): FlashRadar[] | null {
+    return this.flash;
+  }
 }

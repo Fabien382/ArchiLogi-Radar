@@ -1,10 +1,10 @@
 {
-    "metadata": {
-      "localisation": "Lyon 7e",
-      "speedThreshold": 90
-    },
-    "incidents": [
-      ["BH-686-AM", "2023-01-01T00:00:00Z"],
-      ["FD-798-MP", "2023-01-01T00:00:00Z"]
-    ]
+  "metadata": {
+    "localisation": "Lyon 7e",
+    "speedThreshold": 90
+  },
+  "incidents": [
+    ["BH-686-AM", "2023-01-01T00:00:00Z"],
+    ["FD-798-MP", "2023-01-01T00:00:00Z"]
+  ]
 }

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.ts",
   "devDependencies": {
+    "@types/xml2js": "^0.4.11",
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
