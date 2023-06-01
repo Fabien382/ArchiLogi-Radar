@@ -19,7 +19,7 @@ export class JsonB612 implements dataInterfaces {
             null,
             null,
             reports.speed,
-            reports.date,
+            new Date(reports.date + 'T00:00:00Z'),
             reports.evidenceUrl
           )
         );
