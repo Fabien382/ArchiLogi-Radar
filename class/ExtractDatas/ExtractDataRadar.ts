@@ -1,6 +1,6 @@
-import { dataInterfaces } from '../interfaces/dataInterfaces';
-import { FlashRadar } from '../models/FlashRadar';
-import { Radar } from '../models/Radar';
+import { dataInterfaces } from '../../interfaces/dataInterfaces';
+import { FlashRadar } from '../../models/FlashRadar';
+import { Radar } from '../../models/Radar';
 import { JsonAwesomeRadar } from './JsonAwesomeRadar';
 import { JsonB612 } from './JsonB612';
 import { Reporter2000 } from './Reporter2000';

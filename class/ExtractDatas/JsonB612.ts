@@ -1,7 +1,7 @@
 import fs from 'fs';
-import { dataInterfaces } from '../interfaces/dataInterfaces';
-import { Radar } from '../models/Radar';
-import { FlashRadar } from '../models/FlashRadar';
+import { dataInterfaces } from '../../interfaces/dataInterfaces';
+import { Radar } from '../../models/Radar';
+import { FlashRadar } from '../../models/FlashRadar';
 
 export class JsonB612 implements dataInterfaces {
   getData(): Radar[] {

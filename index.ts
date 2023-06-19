@@ -1,4 +1,4 @@
-import { ExtractDataRadar } from './class/ExtractDataRadar';
+import { ExtractDataRadar } from './class/ExtractDatas/ExtractDataRadar';
 import { FlashRadar } from './models/FlashRadar';
 import { Radar } from './models/Radar';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';

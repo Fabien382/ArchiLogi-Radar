@@ -1,6 +1,6 @@
-import { dataInterfaces } from '../interfaces/dataInterfaces';
-import { Radar } from '../models/Radar';
-import { FlashRadar } from '../models/FlashRadar';
+import { dataInterfaces } from '../../interfaces/dataInterfaces';
+import { Radar } from '../../models/Radar';
+import { FlashRadar } from '../../models/FlashRadar';
 import { parseString } from 'xml2js';
 import fs from 'fs';
 
