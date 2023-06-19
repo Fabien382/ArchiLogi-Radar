@@ -10,9 +10,9 @@ import axios from 'axios';
 export class CreatePdf {
   public static async createPdf(date: Date) {
     const pdfDoc = await PDFDocument.create();
-    const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+    const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
-    const page = pdfDoc.addPage();
+    let page = pdfDoc.addPage();
     const { width, height } = page.getSize();
 
     const data: DatasBusiness = new DatasBusiness();
@@ -22,14 +22,20 @@ export class CreatePdf {
       if (element instanceof ElementPdfTxt) {
         const text = element.getText();
         const x = element.getX();
-        const y = element.getY();
+        let y = element.getY();
         const size = element.getSize();
         const color = element.getColor();
+
+        // si y est supérieur à la hauteur de la page, on passe à la page suivante
+        if (y <= 0) {
+          page = pdfDoc.addPage();
+          y = y + height
+        }
         page.drawText(text, {
           x: x,
           y: y,
           size: size || 30,
-          font: timesRomanFont,
+          font: helveticaFont,
           color: rgb(0, 0, 0),
         });
       }

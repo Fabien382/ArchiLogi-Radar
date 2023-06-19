@@ -10,7 +10,7 @@ export class ElementPdfTxt extends AbstractElementPdf {
     y: number,
     text: string,
     size: number | null,
-    color: string | null
+    color: string | null,
   ) {
     super(x, y);
     this.text = text;

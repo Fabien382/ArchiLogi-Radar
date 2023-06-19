@@ -1,17 +1,17 @@
 export class FlashRadar {
-  private license: string | null;
+  private license: string;
   private type: string | null;
   private brand: string | null;
   private speed: string | null;
-  private date: Date | null;
+  private date: Date;
   private imageUrl: string | null;
 
   constructor(
-    license: string | null,
+    license: string,
     type: string | null,
     brand: string | null,
     speed: string | null,
-    date: Date | null,
+    date: Date,
     imageUrl: string | null
   ) {
     this.license = license;
@@ -22,7 +22,11 @@ export class FlashRadar {
     this.imageUrl = imageUrl;
   }
 
-  public getDate(): Date | null {
+  public getDate(): Date  {
     return this.date;
+  }
+  
+  public getLicense(): string {
+    return this.license;
   }
 }

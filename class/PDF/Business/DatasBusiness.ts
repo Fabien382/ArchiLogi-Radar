@@ -1,3 +1,4 @@
+import { FlashRadar } from '../../../models/FlashRadar';
 import { Radar } from '../../../models/Radar';
 import { ExtractDataRadar } from '../../ExtractDatas/ExtractDataRadar';
 import { AbstractElementPdf } from '../AbstractElementPdf';
@@ -9,7 +10,7 @@ export class DatasBusiness {
 
   getDatas(width: number, height: number, date: Date): AbstractElementPdf[] {
     const dataRadar: ExtractDataRadar = new ExtractDataRadar();
-    const data: Radar[] = dataRadar.getData();
+    const data: Map<String, FlashRadar[]> = dataRadar.groupFlashRadarByDate();
 
     let datasForPdf: AbstractElementPdf[] = [];
     const title: ElementPdfTxt = new ElementPdfTxt(
@@ -30,6 +31,32 @@ export class DatasBusiness {
  
     datasForPdf.push(logo);
 
+
+    // affiche les plaques d'immatriculation par date
+    let i: number = 0;
+    data.forEach((value: FlashRadar[], key: String) => {
+      const nbFlashRadar = value.length;
+      const element: ElementPdfTxt = new ElementPdfTxt(
+        50,
+        height - 4 * 70 - i * 50,
+        key.toString() + " - " + nbFlashRadar + " Incidents",
+        20,
+        '#000000'
+      );
+      datasForPdf.push(element);
+      i++;
+      value.forEach((flashRadar: FlashRadar) => {
+        const element: ElementPdfTxt = new ElementPdfTxt(
+          50,
+          height - 4 * 70 - i * 50,
+          flashRadar.getLicense(),
+          15,
+          '#000000'
+        );
+        datasForPdf.push(element);
+        i++;
+      });
+    });
     return datasForPdf;
   }
 }
