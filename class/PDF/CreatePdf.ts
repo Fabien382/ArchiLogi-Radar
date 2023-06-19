@@ -3,8 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import { DatasBusiness } from './Business/DatasBusiness';
 import { AbstractElementPdf } from './AbstractElementPdf';
-import { ElementPdfTxt } from './ElementPdfTxt';
 import { ElementPdfImage } from './ElementPdfImage';
+import { ElementPdfTxt } from './ElementPdfTxt';
+import axios from 'axios';
 
 export class CreatePdf {
   public static async createPdf(date: Date) {
@@ -13,14 +14,11 @@ export class CreatePdf {
 
     const page = pdfDoc.addPage();
     const { width, height } = page.getSize();
-    const data: DatasBusiness = new DatasBusiness();
-    const dataBusiness: AbstractElementPdf[] = data.getDatas(
-      width,
-      height,
-      date
-    );
 
-    dataBusiness.forEach((element: AbstractElementPdf) => {
+    const data: DatasBusiness = new DatasBusiness();
+    const dataBusiness: AbstractElementPdf[] = data.getDatas(width, height, date);
+
+    for (const element of dataBusiness) {
       if (element instanceof ElementPdfTxt) {
         const text = element.getText();
         const x = element.getX();
@@ -37,19 +35,27 @@ export class CreatePdf {
       }
 
       if (element instanceof ElementPdfImage) {
-        const image = element.getImage();
-        const x = element.getX();
-        const y = element.getY();
-        const pngImage = fs.readFileSync(image);
-        const pngImageEmbed = await pdfDoc.embedPng(pngImage);
-        page.drawImage(pngImageEmbed, {
-          x: x,
-          y: y,
-          width: 300,
-          height: 300,
-        });
+        const imageUrl = element.getImage();
+        try {
+          const imageResponse = await axios.get(imageUrl, {
+            responseType: 'arraybuffer',
+          });
+
+          const imageBytes = imageResponse.data;
+          const image = await pdfDoc.embedPng(imageBytes);
+          const scale = image.scale(element.getScale() || 1);
+          page.drawImage(image, {
+            x: element.getX(),
+            y: element.getY(),
+            width: scale.width,
+            height: scale.height,
+          });
+        } catch (error) {
+          console.log('Une erreur s\'est produite lors du chargement de l\'image :', error);
+        }
       }
-    });
+    }
+
     const pdfBytes = await pdfDoc.save();
     const filePath = path.join('pdf/output.pdf'); // Chemin vers le fichier de sortie
 

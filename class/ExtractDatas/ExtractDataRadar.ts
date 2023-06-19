@@ -5,6 +5,8 @@ import { JsonAwesomeRadar } from './JsonAwesomeRadar';
 import { JsonB612 } from './JsonB612';
 import { Reporter2000 } from './Reporter2000';
 
+
+
 export class ExtractDataRadar {
   public getData(): Radar[] {
     const awesomeRadar: dataInterfaces = new JsonAwesomeRadar();
@@ -32,6 +34,7 @@ export class ExtractDataRadar {
         }
       });
     });
+    
     return radar;
   }
 }
