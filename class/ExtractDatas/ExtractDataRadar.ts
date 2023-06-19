@@ -18,4 +18,20 @@ export class ExtractDataRadar {
     ];
     return radar;
   }
+
+  public getDataByDate(date: Date): Radar[] {
+    let radar: Radar[] = this.getData();
+    let flashOfTheDay: FlashRadar[] = [];
+    radar.forEach((element: Radar) => {
+      element.getFlash()?.forEach((flash: FlashRadar) => {
+        const flashDate: Date | null = flash.getDate();
+        if (flashDate instanceof Date) {
+          if (flashDate.setHours(0, 0, 0, 0) === date.setHours(0, 0, 0, 0)) {
+            flashOfTheDay.push(flash);
+          }
+        }
+      });
+    });
+    return radar;
+  }
 }

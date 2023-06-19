@@ -1,14 +1,14 @@
 import { AbstractElementPdf } from './AbstractElementPdf';
 
 export class ElementPdfImage extends AbstractElementPdf {
-  private image: string | null;
+  private image: string;
 
-  constructor(x: number | null, y: number | null, image: string | null) {
+  constructor(x: number, y: number, image: string) {
     super(x, y);
     this.image = image;
   }
 
-  public getImage(): string | null {
+  public getImage(): string {
     return this.image;
   }
 }

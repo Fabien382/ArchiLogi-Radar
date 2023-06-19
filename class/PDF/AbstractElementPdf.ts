@@ -1,17 +1,17 @@
 export abstract class AbstractElementPdf {
-  private x: number | null;
-  private y: number | null;
+  private x: number;
+  private y: number;
 
-  constructor(x: number | null, y: number | null) {
+  constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
   }
 
-  public getX(): number | null {
+  public getX(): number {
     return this.x;
   }
 
-  public getY(): number | null {
+  public getY(): number {
     return this.y;
   }
 }

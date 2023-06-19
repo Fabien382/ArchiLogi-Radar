@@ -1,14 +1,14 @@
 import { AbstractElementPdf } from './AbstractElementPdf';
 
 export class ElementPdfTxt extends AbstractElementPdf {
-  private text: string | null;
+  private text: string;
   private size: number | null;
   private color: string | null;
 
   constructor(
-    x: number | null,
-    y: number | null,
-    text: string | null,
+    x: number,
+    y: number,
+    text: string,
     size: number | null,
     color: string | null
   ) {
@@ -18,7 +18,7 @@ export class ElementPdfTxt extends AbstractElementPdf {
     this.color = color;
   }
 
-  public getText(): string | null {
+  public getText(): string {
     return this.text;
   }
 
