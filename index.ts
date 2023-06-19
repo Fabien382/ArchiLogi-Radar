@@ -1,8 +1,7 @@
 import { ExtractDataRadar } from './class/ExtractDatas/ExtractDataRadar';
 import { FlashRadar } from './models/FlashRadar';
 import { Radar } from './models/Radar';
-import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
-import fs from 'fs/promises';
+import { CreatePdf } from './class/PDF/CreatePdf';
 // import * as fs from 'fs';
 
 // choice of the date
@@ -25,26 +24,5 @@ radar.forEach((element: Radar) => {
   });
 });
 console.log(flashOfTheDay);
-// const jsonData = JSON.stringify(flashOfTheDay);
 
-// const filePath = './datas/extractData.json';
-// const fileContent = jsonData;
-
-// fs.writeFile(filePath, fileContent, (err) => {
-//   if (err) {
-//     console.error('Erreur lors de la création du fichier :', err);
-//     return;
-//   }
-
-//   console.log('Le fichier a été créé avec succès !');
-// });
-
-const createPdf: Function = async () => {
-  const pdfDoc = await PDFDocument.create();
-  const page = pdfDoc.addPage();
-  page.drawText('You can create PDFs!');
-  const pdfBytes = await pdfDoc.save();
-
-  fs.writeFile('C:\\Users\\fabie\\OneDrive\\Bureau\\output.pdf', pdfBytes);
-};
-createPdf();
+CreatePdf.createPdf();
