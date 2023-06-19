@@ -1,1 +1,1 @@
-export class extends AbstractElementPdf {}
+export class ElementPdfImage extends AbstractElementPdf {}
