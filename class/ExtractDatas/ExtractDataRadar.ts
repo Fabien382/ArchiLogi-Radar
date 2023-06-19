@@ -50,6 +50,7 @@ export class ExtractDataRadar {
             const existingData: FlashRadar[] | undefined = groupedData.get(formattedDate);
             if (existingData) {
               groupedData.set(formattedDate, [...existingData, flash]);
+              
             } else {
               groupedData.set(formattedDate, [flash]);
             }

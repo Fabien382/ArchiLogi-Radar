@@ -4,12 +4,12 @@ export class Radar {
   private name: string | null;
   private localisation: string | null;
   private speedThreshold: Number | null;
-  private flash: FlashRadar[] | null;
+  private flash: FlashRadar[];
 
   constructor(
     name: string | null,
     localisation: string | null,
-    flash: FlashRadar[] | null,
+    flash: FlashRadar[],
     speedThreshold: Number | null
   ) {
     this.name = name;
@@ -18,7 +18,7 @@ export class Radar {
     this.speedThreshold = speedThreshold;
   }
 
-  public getFlash(): FlashRadar[] | null {
-    return this.flash;
+  public getFlash(): FlashRadar[] {
+    return this.flash
   }
 }

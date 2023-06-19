@@ -11,6 +11,7 @@ export class CreatePdf {
   public static async createPdf(date: Date) {
     const pdfDoc = await PDFDocument.create();
     const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    let nbPage:number = 1;
 
     let page = pdfDoc.addPage();
     const { width, height } = page.getSize();
@@ -28,9 +29,14 @@ export class CreatePdf {
 
         // si y est supérieur à la hauteur de la page, on passe à la page suivante
         if (y <= 0) {
-          page = pdfDoc.addPage();
-          y = y + height
+          if(y <= 0 - ((nbPage -1) * height)) {
+            page = pdfDoc.addPage();
+            nbPage += 1;
+          }
+          y = y +  ((nbPage -1) * height);
         }
+
+
         page.drawText(text, {
           x: x,
           y: y,

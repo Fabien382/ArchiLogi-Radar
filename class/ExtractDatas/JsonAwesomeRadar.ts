@@ -7,7 +7,7 @@ export class JsonAwesomeRadar implements dataInterfaces {
   getData(): Radar[] {
     const radarList: Radar[] = [];
     try {
-      const data = fs.readFileSync('./datas/AwesomeRadar.json', 'utf8');
+      const data = fs.readFileSync('./radarIncidents/AwesomeRadar.json', 'utf8');
       const jsonData: any = JSON.parse(data);
 
       let flashRadar: FlashRadar[] = [];

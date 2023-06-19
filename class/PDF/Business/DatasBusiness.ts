@@ -30,12 +30,13 @@ export class DatasBusiness {
     );
  
     datasForPdf.push(logo);
-
+    let nbIncidentsTotal: number = 0;
 
     // affiche les plaques d'immatriculation par date
     let i: number = 0;
     data.forEach((value: FlashRadar[], key: String) => {
       const nbFlashRadar = value.length;
+      nbIncidentsTotal += nbFlashRadar;
       const element: ElementPdfTxt = new ElementPdfTxt(
         50,
         height - 4 * 70 - i * 50,
@@ -57,6 +58,15 @@ export class DatasBusiness {
         i++;
       });
     });
+
+    const element: ElementPdfTxt = new ElementPdfTxt(
+      width /2 -120,
+      height - 4 * 70 - i * 50,
+      "Nombre d'incidents total : " + nbIncidentsTotal,
+      20,
+      '#000000'
+    );
+    datasForPdf.push(element);
     return datasForPdf;
   }
 }

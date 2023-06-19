@@ -6,7 +6,7 @@ import { FlashRadar } from '../../models/FlashRadar';
 export class JsonB612 implements dataInterfaces {
   getData(): Radar[] {
     try {
-      const data = fs.readFileSync('./datas/B612.json', 'utf8');
+      const data = fs.readFileSync('./radarIncidents/B612.json', 'utf8');
       const jsonData: any = JSON.parse(data);
 
       const radarList: Radar[] = [];
