@@ -1,10 +1,10 @@
-import { dataInterfaces } from '../../interfaces/dataInterfaces';
+import { RadarAndIncidentsInterfaces } from '../../interfaces/RadarAndIncidentsInterfaces';
 import { Radar } from '../../models/Radar';
 import { FlashRadar } from '../../models/FlashRadar';
 import { parseString } from 'xml2js';
 import fs from 'fs';
 
-export class Reporter2000 implements dataInterfaces {
+export class Reporter2000 implements RadarAndIncidentsInterfaces {
   getRadarAndIncidents(): Radar[] {
     try {
       const xmlData = fs.readFileSync(

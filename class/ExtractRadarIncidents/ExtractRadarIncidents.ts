@@ -1,4 +1,4 @@
-import { dataInterfaces } from '../../interfaces/dataInterfaces';
+import { RadarAndIncidentsInterfaces } from '../../interfaces/RadarAndIncidentsInterfaces';
 import { FlashRadar } from '../../models/FlashRadar';
 import { Radar } from '../../models/Radar';
 import { JsonAwesomeRadar } from './JsonAwesomeRadar';
@@ -8,9 +8,9 @@ import _ from 'lodash';
 
 export class ExtractRadarIncidents {
   public getRadarAndIncidents(): Radar[] {
-    const awesomeRadar: dataInterfaces = new JsonAwesomeRadar();
-    const jsonB612: dataInterfaces = new JsonB612();
-    const reporter2000: dataInterfaces = new Reporter2000();
+    const awesomeRadar: RadarAndIncidentsInterfaces = new JsonAwesomeRadar();
+    const jsonB612: RadarAndIncidentsInterfaces = new JsonB612();
+    const reporter2000: RadarAndIncidentsInterfaces = new Reporter2000();
 
     let radar: Radar[] = [
       ...awesomeRadar.getRadarAndIncidents(),

@@ -1,9 +1,9 @@
 import fs from 'fs';
-import { dataInterfaces } from '../../interfaces/dataInterfaces';
+import { RadarAndIncidentsInterfaces } from '../../interfaces/RadarAndIncidentsInterfaces';
 import { Radar } from '../../models/Radar';
 import { FlashRadar } from '../../models/FlashRadar';
 
-export class JsonAwesomeRadar implements dataInterfaces {
+export class JsonAwesomeRadar implements RadarAndIncidentsInterfaces {
   getRadarAndIncidents(): Radar[] {
     const radarList: Radar[] = [];
     try {

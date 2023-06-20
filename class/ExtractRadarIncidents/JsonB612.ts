@@ -1,9 +1,9 @@
 import fs from 'fs';
-import { dataInterfaces } from '../../interfaces/dataInterfaces';
+import { RadarAndIncidentsInterfaces } from '../../interfaces/RadarAndIncidentsInterfaces';
 import { Radar } from '../../models/Radar';
 import { FlashRadar } from '../../models/FlashRadar';
 
-export class JsonB612 implements dataInterfaces {
+export class JsonB612 implements RadarAndIncidentsInterfaces {
   getRadarAndIncidents(): Radar[] {
     try {
       const data = fs.readFileSync('./radarIncidents/B612.json', 'utf8');

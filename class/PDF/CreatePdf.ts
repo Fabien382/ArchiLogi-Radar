@@ -8,13 +8,13 @@ import { ElementPdfTxt } from './ElementPdfTxt';
 import axios from 'axios';
 
 export class CreatePdf {
-  public static async createPdf(date: Date) {
+  public static async createPdf() {
     const pdfDoc = await PDFDocument.create();
     const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
     this.initializePage(pdfDoc);
     const { width, height } = pdfDoc.getPages()[0].getSize();
-    const elements = this.getElementsForPdf(width, height, date);
+    const elements = this.getElementsForPdf(width, height);
 
     for (const element of elements) {
       if (element instanceof ElementPdfTxt) {
@@ -29,10 +29,13 @@ export class CreatePdf {
   }
 
   private static initializePage(pdfDoc: any) {
-      pdfDoc.addPage();
+    pdfDoc.addPage();
   }
 
-  private static getElementsForPdf(width: number, height: number, date: Date): AbstractElementPdf[] {
+  private static getElementsForPdf(
+    width: number,
+    height: number
+  ): AbstractElementPdf[] {
     return new PdfAdapter().getElementsForPdf(width, height);
   }
 
@@ -43,8 +46,8 @@ export class CreatePdf {
   ) {
     const x = element.getX();
     const y = this.calculateYPosition(element, pdfDoc);
-    const page = pdfDoc.getPages()[pdfDoc.getPageCount() - 1]
-    
+    const page = pdfDoc.getPages()[pdfDoc.getPageCount() - 1];
+
     page.drawText(element.getText(), {
       x,
       y,
@@ -55,19 +58,24 @@ export class CreatePdf {
   }
 
   private static calculateYPosition(element: ElementPdfTxt, pdfDoc: any) {
-    const page = pdfDoc.getPages()[pdfDoc.getPageCount() - 1]
+    const page = pdfDoc.getPages()[pdfDoc.getPageCount() - 1];
     if (element.getY() > 0) {
       return element.getY();
     }
-    if (element.getY() <= 0 - (pdfDoc.getPageCount() - 1) * page.getSize().height) {
+    if (
+      element.getY() <=
+      0 - (pdfDoc.getPageCount() - 1) * page.getSize().height
+    ) {
       this.initializePage(pdfDoc);
     }
     return element.getY() + (pdfDoc.getPageCount() - 1) * page.getSize().height;
   }
 
-
-  private static async handleImageElement(element: ElementPdfImage, pdfDoc: any) {
-    const page = pdfDoc.getPages()[pdfDoc.getPageCount() - 1]
+  private static async handleImageElement(
+    element: ElementPdfImage,
+    pdfDoc: any
+  ) {
+    const page = pdfDoc.getPages()[pdfDoc.getPageCount() - 1];
     try {
       const imageResponse = await axios.get(element.getImage(), {
         responseType: 'arraybuffer',
@@ -83,7 +91,10 @@ export class CreatePdf {
         height: scale.height,
       });
     } catch (error) {
-      console.log("Une erreur s'est produite lors du chargement de l'image :", error);
+      console.log(
+        "Une erreur s'est produite lors du chargement de l'image :",
+        error
+      );
     }
   }
 

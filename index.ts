@@ -13,4 +13,4 @@ let flashOfTheDay: Radar[] =
   extractRadarIncidents.getRadarAndIncidentsByDate(date);
 console.log(flashOfTheDay);
 
-CreatePdf.createPdf(date);
+CreatePdf.createPdf();

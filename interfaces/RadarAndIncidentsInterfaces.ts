@@ -1,5 +1,5 @@
 import { Radar } from '../models/Radar';
 
-export interface dataInterfaces {
+export interface RadarAndIncidentsInterfaces {
   getRadarAndIncidents(): Radar[];
 }
