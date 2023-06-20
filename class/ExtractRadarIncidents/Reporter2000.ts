@@ -5,9 +5,12 @@ import { parseString } from 'xml2js';
 import fs from 'fs';
 
 export class Reporter2000 implements dataInterfaces {
-  getData(): Radar[] {
+  getRadarAndIncidents(): Radar[] {
     try {
-      const xmlData = fs.readFileSync('./radarIncidents/Reporter2000.xml', 'utf8');
+      const xmlData = fs.readFileSync(
+        './radarIncidents/Reporter2000.xml',
+        'utf8'
+      );
 
       let radarList: Radar[] = [];
 

@@ -4,10 +4,13 @@ import { Radar } from '../../models/Radar';
 import { FlashRadar } from '../../models/FlashRadar';
 
 export class JsonAwesomeRadar implements dataInterfaces {
-  getData(): Radar[] {
+  getRadarAndIncidents(): Radar[] {
     const radarList: Radar[] = [];
     try {
-      const data = fs.readFileSync('./radarIncidents/AwesomeRadar.json', 'utf8');
+      const data = fs.readFileSync(
+        './radarIncidents/AwesomeRadar.json',
+        'utf8'
+      );
       const jsonData: any = JSON.parse(data);
 
       let flashRadar: FlashRadar[] = [];

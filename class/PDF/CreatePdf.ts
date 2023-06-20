@@ -1,7 +1,7 @@
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 import fs from 'fs';
 import path from 'path';
-import { DatasBusiness } from './Business/DatasBusiness';
+import { PdfAdapter } from './Business/PdfAdapter';
 import { AbstractElementPdf } from './AbstractElementPdf';
 import { ElementPdfImage } from './ElementPdfImage';
 import { ElementPdfTxt } from './ElementPdfTxt';
@@ -11,13 +11,17 @@ export class CreatePdf {
   public static async createPdf(date: Date) {
     const pdfDoc = await PDFDocument.create();
     const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
-    let nbPage:number = 1;
+    let nbPage: number = 1;
 
     let page = pdfDoc.addPage();
     const { width, height } = page.getSize();
 
-    const data: DatasBusiness = new DatasBusiness();
-    const dataBusiness: AbstractElementPdf[] = data.getDatas(width, height, date);
+    const data: PdfAdapter = new PdfAdapter();
+    const dataBusiness: AbstractElementPdf[] = data.getElementsForPdf(
+      width,
+      height,
+      date
+    );
 
     for (const element of dataBusiness) {
       if (element instanceof ElementPdfTxt) {
@@ -29,13 +33,12 @@ export class CreatePdf {
 
         // si y est supérieur à la hauteur de la page, on passe à la page suivante
         if (y <= 0) {
-          if(y <= 0 - ((nbPage -1) * height)) {
+          if (y <= 0 - (nbPage - 1) * height) {
             page = pdfDoc.addPage();
             nbPage += 1;
           }
-          y = y +  ((nbPage -1) * height);
+          y = y + (nbPage - 1) * height;
         }
-
 
         page.drawText(text, {
           x: x,
@@ -63,7 +66,10 @@ export class CreatePdf {
             height: scale.height,
           });
         } catch (error) {
-          console.log('Une erreur s\'est produite lors du chargement de l\'image :', error);
+          console.log(
+            "Une erreur s'est produite lors du chargement de l'image :",
+            error
+          );
         }
       }
     }

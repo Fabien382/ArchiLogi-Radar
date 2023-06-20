@@ -1,15 +1,18 @@
 import { FlashRadar } from '../../../models/FlashRadar';
-import { Radar } from '../../../models/Radar';
-import { ExtractDataRadar } from '../../ExtractDatas/ExtractDataRadar';
+import { ExtractRadarIncidents } from '../../ExtractRadarIncidents/ExtractRadarIncidents';
 import { AbstractElementPdf } from '../AbstractElementPdf';
 import { ElementPdfImage } from '../ElementPdfImage';
 import { ElementPdfTxt } from '../ElementPdfTxt';
 
-export class DatasBusiness {
+export class PdfAdapter {
   constructor() {}
 
-  getDatas(width: number, height: number, date: Date): AbstractElementPdf[] {
-    const dataRadar: ExtractDataRadar = new ExtractDataRadar();
+  getElementsForPdf(
+    width: number,
+    height: number,
+    date: Date
+  ): AbstractElementPdf[] {
+    const dataRadar: ExtractRadarIncidents = new ExtractRadarIncidents();
     const data: Map<String, FlashRadar[]> = dataRadar.groupFlashRadarByDate();
 
     let datasForPdf: AbstractElementPdf[] = [];
@@ -28,7 +31,7 @@ export class DatasBusiness {
       'https://franceactive-occitanie.org/wp-content/uploads/2021/01/logo-etat-francais.png',
       0.5
     );
- 
+
     datasForPdf.push(logo);
     let nbIncidentsTotal: number = 0;
 
@@ -40,7 +43,7 @@ export class DatasBusiness {
       const element: ElementPdfTxt = new ElementPdfTxt(
         50,
         height - 4 * 70 - i * 50,
-        key.toString() + " - " + nbFlashRadar + " Incidents",
+        key.toString() + ' - ' + nbFlashRadar + ' Incidents',
         20,
         '#000000'
       );
@@ -60,7 +63,7 @@ export class DatasBusiness {
     });
 
     const element: ElementPdfTxt = new ElementPdfTxt(
-      width /2 -120,
+      width / 2 - 120,
       height - 4 * 70 - i * 50,
       "Nombre d'incidents total : " + nbIncidentsTotal,
       20,
