@@ -9,8 +9,7 @@ export class PdfAdapter {
 
   getElementsForPdf(
     width: number,
-    height: number,
-    date: Date
+    height: number
   ): AbstractElementPdf[] {
     const dataRadar: ExtractRadarIncidents = new ExtractRadarIncidents();
     const data: Map<String, FlashRadar[]> = dataRadar.groupFlashRadarByDate();
